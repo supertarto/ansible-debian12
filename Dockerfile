@@ -15,6 +15,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
+
     
 # Allow use of system Python
 RUN rm -f /usr/lib/python3.11/EXTERNALLY-MANAGED
