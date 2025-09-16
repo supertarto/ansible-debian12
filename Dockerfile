@@ -21,10 +21,13 @@ RUN apt-get update \
 RUN rm -f /usr/lib/python3.11/EXTERNALLY-MANAGED
 
 # Upgrade pip to latest version.
-RUN pip3 install --upgrade pip
+# RUN pip3 install --upgrade pip
 
 # Install Ansible via pip.
-RUN pip3 install $pip_packages
+RUN pip3 install $pip_packages --break-system-packages
+
+COPY initctl_faker .
+RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
 
 # Install Ansible inventory file.
 RUN mkdir -p /etc/ansible
